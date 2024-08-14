@@ -1,0 +1,11 @@
+# Command to prepare the data (worked)
+python tools/create_data.py kitti --root-path ./data/arcs --out-dir .data/arcs --extra-tag arcs
+
+# Train model (have not tried)
+python tools/train.py configs/pointpillars/pointpillars_hv_secfpn_8xb6-160e_kitti-3d-car_on_arcs.py
+
+# Test model checkpoint (have not tried)
+python tools/test.py configs/pointpillars/pointpillars_hv_secfpn_8xb6-160e_kitti-3d-car_on_arcs.py checkpoints/epoch_80.pth
+
+# Visualize dataset after configuring data loader (have not tried)
+python tools/misc/browse_dataset.py configs/_base_/datasets/kitti-3d-3class_on_arcs.py --task lidar_det --output-dir test_result --not-show
