@@ -97,10 +97,13 @@ def get_dataset_point_statistics(data_path, label_path, subset_size):
     # Get just the file names
     files = [f for f in os.listdir(data_path) if f.endswith('.bin')]
 
-    # Get subset of files to check
-    random.shuffle(files)
-    total_files = len(files)
-    subset_num = int(total_files * subset_size)
+    if subset_size < 1:
+        # Get subset of files to check
+        random.shuffle(files)
+        total_files = len(files)
+        subset_num = int(total_files * subset_size)
+    else:
+        subset_num  = len(files)
     
     # For each file
     for filename in files[:subset_num]:
@@ -124,10 +127,10 @@ def get_dataset_point_statistics(data_path, label_path, subset_size):
     return num_frames, total_num_points, total_num_label_points
 
 
-def evaluate_filter(dir, dataset_name, subset_size=1):
+def evaluate_filter(data_path, label_path, dataset_name, subset_size=1):
     # Create directory path
-    data_path = Path(BASE_DIR, dir)
-    label_path = Path(BASE_DIR, ARCS_LABEL_DIR)
+    # data_path = Path(data_path)
+    # label_path = Path(label_path)
 
     # Get the dataset statistics
     num_frames, total_num_points, total_num_label_points = get_dataset_point_statistics(data_path, label_path, subset_size)
