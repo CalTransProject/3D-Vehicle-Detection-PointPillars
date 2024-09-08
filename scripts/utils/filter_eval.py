@@ -5,7 +5,6 @@ import pandas as pd
 from pathlib import Path
 
 
-
 def point_is_in_an_roi_box(point, roi_box_list):
     # Extract the point coordinates
     x, y, z = point

@@ -5,7 +5,6 @@ import pandas as pd
 from pathlib import Path
 
 
-
 def point_is_in_an_roi_box(point, roi_box_list):
     # Extract the point coordinates
     x, y, z = point
@@ -129,8 +128,8 @@ def get_dataset_point_statistics(data_path, label_path, subset_size):
 
 def evaluate_filter(data_path, label_path, dataset_name, subset_size=1):
     # Create directory path
-    data_path = Path(data_path)
-    label_path = Path(label_path)
+    # data_path = Path(data_path)
+    # label_path = Path(label_path)
 
     # Get the dataset statistics
     num_frames, total_num_points, total_num_label_points = get_dataset_point_statistics(data_path, label_path, subset_size)
