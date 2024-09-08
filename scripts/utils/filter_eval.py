@@ -71,6 +71,7 @@ def get_frame_point_statistics(data_file_path, label_file_path):
     total_points = 0
     label_points = 0
 
+    # Count points for filtered data
     points_df = convert_to_dataframe(data_file_path)
     
     # For each point in the data
@@ -88,10 +89,14 @@ def get_frame_point_statistics(data_file_path, label_file_path):
 
 
 def get_dataset_point_statistics(data_path, label_path, subset_size):
+    unfiltered_df = pd.read_pickle('arcs_points_count.pkl')
+    unfiltered_df.set_index('file_id', inplace=True)
+    
     # Running totals
     num_frames = 0
     total_num_points = 0
     total_num_label_points = 0
+    total_num_unfiltered_label_points = 0
     
     # Get just the file names
     files = [f for f in os.listdir(data_path) if f.endswith('.bin')]
@@ -108,7 +113,7 @@ def get_dataset_point_statistics(data_path, label_path, subset_size):
     for filename in files[:subset_num]:
         # Get file index
         file_id, extension = os.path.splitext(filename)
-        print(file_id, end=' ')
+        print('_', end='')
         
         # Append file name to locations
         data_file_path = Path(data_path, filename)
@@ -117,32 +122,35 @@ def get_dataset_point_statistics(data_path, label_path, subset_size):
 
         # Get the number of points, and the number of points inside the labels
         num_frame_points, num_frame_label_points = get_frame_point_statistics(data_file_path, label_file_path)
+
+        # Get the number of label points from the label points df
+        num_frame_unfiltered_label_points = df.loc[file_id]['label_points']
+        
         # Add to running total
         num_frames += 1
         total_num_points += num_frame_points
         total_num_label_points += num_frame_label_points
+        total_num_unfiltered_label_points += num_frame_unfiltered_label_points
 
     # return total_num_points / num_frames, total_num_label_points / num_frames
-    return num_frames, total_num_points, total_num_label_points
+    return num_frames, total_num_points, total_num_unfiltered_label_points, total_num_label_points
 
 
 def evaluate_filter(data_path, label_path, dataset_name, subset_size=1):
-    # Create directory path
-    # data_path = Path(data_path)
-    # label_path = Path(label_path)
-
     # Get the dataset statistics
-    num_frames, total_num_points, total_num_label_points = get_dataset_point_statistics(data_path, label_path, subset_size)
+    num_frames, total_num_points, total_num_unfiltered_label_points, total_num_label_points = get_dataset_point_statistics(data_path, label_path, unfiltered_path, subset_size)
 
     results = {
         'dataset_name': dataset_name,
         'num_frames': num_frames,
         'total_num_points': total_num_points,
+        'total_num_unfiltered_label_points': total_num_unfiltered_label_points,
         'total_num_label_points': total_num_label_points,
         'total_num_non_label_points': total_num_points - total_num_label_points,
         'avg_frame_pts': total_num_points / num_frames,
         'avg_frame_label_pts': total_num_label_points / num_frames,
-        'avg_frame_non_label_pts': (total_num_points - total_num_label_points) / num_frames
+        'avg_frame_non_label_pts': (total_num_points - total_num_label_points) / num_frames,
+        'percent_retained_label_points': total_num_label_points / total_num_unfiltered_label_points
     }
 
     return results

@@ -1,4 +1,7 @@
 *.zip
 data/
 zip_files/
+scripts/temp_labels
+scripts/temp_lidar
+*bin
 *.pkl
