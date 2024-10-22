@@ -1,8 +1,12 @@
 # Command to prepare the data (worked)
 python tools/create_data.py kitti --root-path ./data/arcs --out-dir ./data/arcs --extra-tag arcs
+python tools/create_data.py kitti --root-path ./data/st_kitti_unfiltered --out-dir ./data/st_kitti_unfiltered --extra-tag st_kitti_unfiltered
+
 
 # Train model (CUDA issues)
 python tools/train.py configs/pointpillars/pointpillars_hv_secfpn_8xb6-160e_kitti-3d-car_on_arcs.py
+python tools/train.py configs/pointpillars/pointpillars_hv_secfpn_8xb6-160e_kitti-3d-3class_unfiltered.py
+
 
 # Test model checkpoint (have not tried)
 python tools/test.py configs/pointpillars/pointpillars_hv_secfpn_8xb6-160e_kitti-3d-car_on_arcs.py checkpoints/epoch_80.pth
