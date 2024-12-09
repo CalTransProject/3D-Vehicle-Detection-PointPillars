@@ -1,0 +1,113 @@
+KITTI Label Index Permutation Testing Results
+=======================================
+
+Attempt 1
+Index mapping: [8, 9, 10, 11, 12, 13, 14]
+Data creation Success: True
+Training Success: False
+Error: /home/rachel/mmdetection3d/mmdet3d/models/dense_heads/anchor3d_head.py:94: UserWarning: dir_offset and dir_limit_offset will be depressed and be incorporated into box coder in the future
+  warnings.warn(
+Traceback (most recent call last):
+  File "../../../mmdetection3d/tools/train.py", line 135, in <module>
+    main()
+  File "../../../mmdetection3d/tools/train.py", line 131, in main
+    runner.train()
+  File "/home/rachel/miniconda3/envs/openmm_mmvc/lib/python3.8/site-packages/mmengine/runner/runner.py", line 1728, in train
+    self._train_loop = self.build_train_loop(
+  File "/home/rachel/miniconda3/envs/openmm_mmvc/lib/python3.8/site-packages/mmengine/runner/runner.py", line 1527, in build_train_loop
+    loop = EpochBasedTrainLoop(
+  File "/home/rachel/miniconda3/envs/openmm_mmvc/lib/python3.8/site-packages/mmengine/runner/loops.py", line 44, in __init__
+    super().__init__(runner, dataloader)
+  File "/home/rachel/miniconda3/envs/openmm_mmvc/lib/python3.8/site-packages/mmengine/runner/base_loop.py", line 26, in __init__
+    self.dataloader = runner.build_dataloader(
+  File "/home/rachel/miniconda3/envs/openmm_mmvc/lib/python3.8/site-packages/mmengine/runner/runner.py", line 1370, in build_dataloader
+    dataset = DATASETS.build(dataset_cfg)
+  File "/home/rachel/miniconda3/envs/openmm_mmvc/lib/python3.8/site-packages/mmengine/registry/registry.py", line 570, in build
+    return self.build_func(cfg, *args, **kwargs, registry=self)
+  File "/home/rachel/miniconda3/envs/openmm_mmvc/lib/python3.8/site-packages/mmengine/registry/build_functions.py", line 121, in build_from_cfg
+    obj = obj_cls(**args)  # type: ignore
+  File "/home/rachel/miniconda3/envs/openmm_mmvc/lib/python3.8/site-packages/mmengine/dataset/dataset_wrapper.py", line 222, in __init__
+    self.dataset = DATASETS.build(dataset)
+  File "/home/rachel/miniconda3/envs/openmm_mmvc/lib/python3.8/site-packages/mmengine/registry/registry.py", line 570, in build
+    return self.build_func(cfg, *args, **kwargs, registry=self)
+  File "/home/rachel/miniconda3/envs/openmm_mmvc/lib/python3.8/site-packages/mmengine/registry/build_functions.py", line 121, in build_from_cfg
+    obj = obj_cls(**args)  # type: ignore
+  File "/home/rachel/mmdetection3d/mmdet3d/datasets/kitti_dataset.py", line 79, in __init__
+    super().__init__(
+  File "/home/rachel/mmdetection3d/mmdet3d/datasets/det3d_dataset.py", line 129, in __init__
+    super().__init__(
+  File "/home/rachel/miniconda3/envs/openmm_mmvc/lib/python3.8/site-packages/mmengine/dataset/base_dataset.py", line 244, in __init__
+    self.pipeline = Compose(pipeline)
+  File "/home/rachel/miniconda3/envs/openmm_mmvc/lib/python3.8/site-packages/mmengine/dataset/base_dataset.py", line 38, in __init__
+    transform = TRANSFORMS.build(transform)
+  File "/home/rachel/miniconda3/envs/openmm_mmvc/lib/python3.8/site-packages/mmengine/registry/registry.py", line 570, in build
+    return self.build_func(cfg, *args, **kwargs, registry=self)
+  File "/home/rachel/miniconda3/envs/openmm_mmvc/lib/python3.8/site-packages/mmengine/registry/build_functions.py", line 121, in build_from_cfg
+    obj = obj_cls(**args)  # type: ignore
+  File "/home/rachel/mmdetection3d/mmdet3d/datasets/transforms/transforms_3d.py", line 369, in __init__
+    self.db_sampler = TRANSFORMS.build(db_sampler)
+  File "/home/rachel/miniconda3/envs/openmm_mmvc/lib/python3.8/site-packages/mmengine/registry/registry.py", line 570, in build
+    return self.build_func(cfg, *args, **kwargs, registry=self)
+  File "/home/rachel/miniconda3/envs/openmm_mmvc/lib/python3.8/site-packages/mmengine/registry/build_functions.py", line 121, in build_from_cfg
+    obj = obj_cls(**args)  # type: ignore
+  File "/home/rachel/mmdetection3d/mmdet3d/datasets/transforms/dbsampler.py", line 128, in __init__
+    db_infos = mmengine.load(open(local_path, 'rb'), file_format='pkl')
+FileNotFoundError: [Errno 2] No such file or directory: 'data/st_kitti_unfiltered/st_kitti_unfiltered_dbinfos_train.pkl'
+
+--------------------------------------------------
+
+Attempt 2
+Index mapping: [8, 9, 10, 11, -12, 13, 14]
+Data creation Success: True
+Training Success: False
+Error: /home/rachel/mmdetection3d/mmdet3d/models/dense_heads/anchor3d_head.py:94: UserWarning: dir_offset and dir_limit_offset will be depressed and be incorporated into box coder in the future
+  warnings.warn(
+Traceback (most recent call last):
+  File "../../../mmdetection3d/tools/train.py", line 135, in <module>
+    main()
+  File "../../../mmdetection3d/tools/train.py", line 131, in main
+    runner.train()
+  File "/home/rachel/miniconda3/envs/openmm_mmvc/lib/python3.8/site-packages/mmengine/runner/runner.py", line 1728, in train
+    self._train_loop = self.build_train_loop(
+  File "/home/rachel/miniconda3/envs/openmm_mmvc/lib/python3.8/site-packages/mmengine/runner/runner.py", line 1527, in build_train_loop
+    loop = EpochBasedTrainLoop(
+  File "/home/rachel/miniconda3/envs/openmm_mmvc/lib/python3.8/site-packages/mmengine/runner/loops.py", line 44, in __init__
+    super().__init__(runner, dataloader)
+  File "/home/rachel/miniconda3/envs/openmm_mmvc/lib/python3.8/site-packages/mmengine/runner/base_loop.py", line 26, in __init__
+    self.dataloader = runner.build_dataloader(
+  File "/home/rachel/miniconda3/envs/openmm_mmvc/lib/python3.8/site-packages/mmengine/runner/runner.py", line 1370, in build_dataloader
+    dataset = DATASETS.build(dataset_cfg)
+  File "/home/rachel/miniconda3/envs/openmm_mmvc/lib/python3.8/site-packages/mmengine/registry/registry.py", line 570, in build
+    return self.build_func(cfg, *args, **kwargs, registry=self)
+  File "/home/rachel/miniconda3/envs/openmm_mmvc/lib/python3.8/site-packages/mmengine/registry/build_functions.py", line 121, in build_from_cfg
+    obj = obj_cls(**args)  # type: ignore
+  File "/home/rachel/miniconda3/envs/openmm_mmvc/lib/python3.8/site-packages/mmengine/dataset/dataset_wrapper.py", line 222, in __init__
+    self.dataset = DATASETS.build(dataset)
+  File "/home/rachel/miniconda3/envs/openmm_mmvc/lib/python3.8/site-packages/mmengine/registry/registry.py", line 570, in build
+    return self.build_func(cfg, *args, **kwargs, registry=self)
+  File "/home/rachel/miniconda3/envs/openmm_mmvc/lib/python3.8/site-packages/mmengine/registry/build_functions.py", line 121, in build_from_cfg
+    obj = obj_cls(**args)  # type: ignore
+  File "/home/rachel/mmdetection3d/mmdet3d/datasets/kitti_dataset.py", line 79, in __init__
+    super().__init__(
+  File "/home/rachel/mmdetection3d/mmdet3d/datasets/det3d_dataset.py", line 129, in __init__
+    super().__init__(
+  File "/home/rachel/miniconda3/envs/openmm_mmvc/lib/python3.8/site-packages/mmengine/dataset/base_dataset.py", line 244, in __init__
+    self.pipeline = Compose(pipeline)
+  File "/home/rachel/miniconda3/envs/openmm_mmvc/lib/python3.8/site-packages/mmengine/dataset/base_dataset.py", line 38, in __init__
+    transform = TRANSFORMS.build(transform)
+  File "/home/rachel/miniconda3/envs/openmm_mmvc/lib/python3.8/site-packages/mmengine/registry/registry.py", line 570, in build
+    return self.build_func(cfg, *args, **kwargs, registry=self)
+  File "/home/rachel/miniconda3/envs/openmm_mmvc/lib/python3.8/site-packages/mmengine/registry/build_functions.py", line 121, in build_from_cfg
+    obj = obj_cls(**args)  # type: ignore
+  File "/home/rachel/mmdetection3d/mmdet3d/datasets/transforms/transforms_3d.py", line 369, in __init__
+    self.db_sampler = TRANSFORMS.build(db_sampler)
+  File "/home/rachel/miniconda3/envs/openmm_mmvc/lib/python3.8/site-packages/mmengine/registry/registry.py", line 570, in build
+    return self.build_func(cfg, *args, **kwargs, registry=self)
+  File "/home/rachel/miniconda3/envs/openmm_mmvc/lib/python3.8/site-packages/mmengine/registry/build_functions.py", line 121, in build_from_cfg
+    obj = obj_cls(**args)  # type: ignore
+  File "/home/rachel/mmdetection3d/mmdet3d/datasets/transforms/dbsampler.py", line 128, in __init__
+    db_infos = mmengine.load(open(local_path, 'rb'), file_format='pkl')
+FileNotFoundError: [Errno 2] No such file or directory: 'data/st_kitti_unfiltered/st_kitti_unfiltered_dbinfos_train.pkl'
+
+--------------------------------------------------
+**************************************************
