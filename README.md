@@ -2,6 +2,52 @@
 
 Welcome to the PointPillars with Background Filtering repository. This collection is organized and and will be maintained by Rachel Gilyard. Below, you'll find descriptions of each file and directory to help you understand their purpose and usage. If you have questions or need assistance, feel free to reach out at **gilyardrachel.com**.
 
+This repository is divided into two main sections:
+- **scripts**: Primarily focused on preprocessing the raw data and creating the background map.  
+- **server_scripts**: Responsible for filtering data, running object detection inference, and related evaluations.
+
+To use these files, you will generally follow these steps:
+1. **Download the data** from the project’s Google Drive.  
+2. **Preprocess the data** using the notebooks in the scripts folder.  
+3. **Create a background map** using the relevant scripts.  
+4. **Run filtering and inference** on the processed data (in server_scripts).  
+
+You can find more details on each file’s function and setup below.
+
+## Data Download & Setup
+
+1. **Locate the Dataset in Google Drive**  
+   Navigate to the Google Drive folder at:
+
+   `3D Vehicle Detection for Real Time Traffic Monitoring > CS Group 2023-2024 > Data Collection 2023-2024 > Final Datasets for Complex YOLO > Zelzah and Plummer 10:45 Minutes - Complex YOLO`
+
+2. **Download Required Data**  
+   From this folder, download the following:
+   - **Labels** (Ground-truth label files)  
+   - **2D Camera Images** (Needed if you plan to use or calibrate with camera data)  
+   - **3D Camera Binary Data** (The LiDAR point clouds)
+
+3. **Place the Data in the Repository**  
+   - In the root directory of this repository, create a new folder named `data`.
+   - Move or copy the downloaded files/folders into the `data` folder.
+   - Your directory should look like:
+     ```
+     PointPillars_with_Background_Filtering/
+     ├── data/
+     │   ├── Labels/
+     │   ├── 2D_Camera_Images/
+     │   └── 3D_Camera_Binary_Data/
+     ├── scripts/
+     ├── server_scripts/
+     └── ...other files and folders...
+     ```
+
+4. **Verify Folder Structure**  
+   - Ensure each of the subfolders you downloaded (Labels, 2D Camera Images, 3D Camera Binary Data) is placed within `data`.
+   - Confirm that all files are present and uncorrupted.
+
+Once you have the data in place, you’re ready to proceed with the preprocessing and background map creation steps.
+
 ## Directory Structure and File Descriptions
 
 ### **scripts**
