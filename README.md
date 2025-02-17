@@ -12,7 +12,7 @@ To use these files, you will generally follow these steps:
 3. **Create a background map** using the relevant scripts.  
 4. **Run filtering and inference** on the processed data (in server_scripts).  
 
-You can find more details on each file’s function and setup below.
+You can find more details on each file’s function and setup below. **link to the file descriptions**
 
 ## Data Download & Setup
 
@@ -23,20 +23,24 @@ You can find more details on each file’s function and setup below.
 
 2. **Download Required Data**  
    From this folder, download the following:
-   - **Labels** (Ground-truth label files)  
+   - **Labels** (Ground-truth label files)
    - **2D Camera Images** (Needed if you plan to use or calibrate with camera data)  
    - **3D Camera Binary Data** (The LiDAR point clouds)
 
 3. **Place the Data in the Repository**  
    - In the root directory of this repository, create a new folder named `data`.
    - Move or copy the downloaded files/folders into the `data` folder.
+   - Change the file names:
+      - "Labels" => "labels"
+      - "2D Camera Images" => "images"
+      - "3D Camera Binary Data" => "velodyne_points"
    - Your directory should look like:
      ```
      PointPillars_with_Background_Filtering/
      ├── data/
-     │   ├── Labels/
-     │   ├── 2D_Camera_Images/
-     │   └── 3D_Camera_Binary_Data/
+     │   ├── labels/
+     │   ├── images/
+     │   └── velodyne_points/
      ├── scripts/
      ├── server_scripts/
      └── ...other files and folders...
@@ -45,8 +49,6 @@ You can find more details on each file’s function and setup below.
 4. **Verify Folder Structure**  
    - Ensure each of the subfolders you downloaded (Labels, 2D Camera Images, 3D Camera Binary Data) is placed within `data`.
    - Confirm that all files are present and uncorrupted.
-
-Once you have the data in place, you’re ready to proceed with the preprocessing and background map creation steps.
 
 ## Directory Structure and File Descriptions
 
