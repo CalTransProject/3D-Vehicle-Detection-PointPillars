@@ -7,12 +7,11 @@ This repository is divided into two main sections:
 - **server_scripts**: Responsible for filtering data, running object detection inference, and related evaluations.
 
 To use these files, you will generally follow these steps:
-1. **Download the data** from the project’s Google Drive.  
-2. **Preprocess the data** using the notebooks in the scripts folder.  
-3. **Create a background map** using the relevant scripts.  
-4. **Run filtering and inference** on the processed data (in server_scripts).  
+1. **[Download the data](#data-download--setup)** from the project’s Google Drive.  
+2. **[Preprocess the data and Create a background map](#preprocessing--background-filtering)** using the notebooks in the scripts folder.  
+3. **[Run filtering and inference](#run-the-time-test-for-filtering--inference)** on the processed data (in server_scripts).  
 
-You can find more details on each file’s function and setup below. **link to the file descriptions**
+You can find more details on each file’s function and setup below. **[Jump to File Descriptions](#directory-structure-and-file-descriptions)**
 
 ## Data Download & Setup
 
@@ -61,7 +60,7 @@ The goal of this section is to preprocess the data so it’s compatible with the
      1. **Creates the Background Filter** that can be used for real-time filtering.  
      2. **Generates a new Velodyne dataset** containing only the filtered points (points that lie outside of the the labeled bounding boxes are removed).
 
-3. **Run the Time Test for Filtering & Inference**  
+## Run the Time Test for Filtering & Inference  
    - Open `filter_time_test_bin.ipynb`. (This was designed to run on Linux, so you may need to adjust the paths if you’re on a different platform.)  
    - Make sure you set:
      - `data_dir` to point to where your Velodyne frames are located (e.g., `data/velodyne_points`).
@@ -71,6 +70,7 @@ The goal of this section is to preprocess the data so it’s compatible with the
        - One that uses Numba
        - One that does not use Numba  
      - The second version (with Numba) demonstrates the speed improvement gained from background filtering.
+
 
 ## Transferring Files via SCP
 
