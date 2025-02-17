@@ -45,12 +45,50 @@ You can find more details on each file’s function and setup below. **link to t
      ├── server_scripts/
      └── ...other files and folders...
      ```
+## Preprocessing & Background Filtering
 
-4. **Verify Folder Structure**  
-   - Ensure each of the subfolders you downloaded (Labels, 2D Camera Images, 3D Camera Binary Data) is placed within `data`.
-   - Confirm that all files are present and uncorrupted.
+The goal of this section is to preprocess the data so it’s compatible with the MMDetection3D library and then generate a background filter.
+
+1. **Correct the Label Format**  
+   - Open `correct_arcs_labels.ipynb`.  
+   - Update the file paths if you’re on macOS or Linux (this script was written for Windows file paths).  
+   - Run the notebook. It will convert the labels to the format expected by the library and provide visualizations to confirm that labels are accurately placed.
+
+2. **Create the Background Filter & Filtered Velodyne Dataset**  
+   - Open `filter_bg_arcs.ipynb`.  
+   - Again, adjust the file paths for non-Windows systems if needed.  
+   - This notebook accomplishes two main tasks:
+     1. **Creates the Background Filter** that can be used for real-time filtering.  
+     2. **Generates a new Velodyne dataset** containing only the filtered points (points that lie outside of the the labeled bounding boxes are removed).
+
+3. **Run the Time Test for Filtering & Inference**  
+   - Open `filter_time_test_bin.ipynb`. (This was designed to run on Linux, so you may need to adjust the paths if you’re on a different platform.)  
+   - Make sure you set:
+     - `data_dir` to point to where your Velodyne frames are located (e.g., `data/velodyne_points`).
+     - `background_map_path` to the path where your background map is stored (created in the previous step).
+   - Run all cells in the notebook to generate speed test results.  
+     - Note there are **two versions** of the speed tests in the notebook:
+       - One that uses Numba
+       - One that does not use Numba  
+     - The second version (with Numba) demonstrates the speed improvement gained from background filtering.
+
+## Transferring Files via SCP
+
+If you need to move files (like the background filter or Velodyne files) between your local machine and a remote server, you can use `scp`. I would zip my velodyne files if before transferring. Here are some examples:
+
+- **Copying a File from Local to Remote**  
+  ```bash
+  scp /path/to/local/file username@server_ip:/path/to/remote/directory
+  ```
+- **Copying a File from Remote to Local**  
+  ```bash
+  scp username@server_ip:/path/to/remote/file /path/to/local/directory
+  ```
+
 
 ## Directory Structure and File Descriptions
+
+There are other notebooks in the repository that may be useful. Here are some descriptions, but most of the notebooks are heavily commented as well.
 
 ### **scripts**
 - **default_files**:  
